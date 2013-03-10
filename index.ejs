@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<HTML>
+
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script> 
+<script type="text/javascript">                                         
+  
+	function request(loop){
+		$.ajax({
+			url: "/update",
+			dataType: "json",
+			method: "POST",
+			success: function(response){
+				//Putting response on page
+				$("#online").text("Users online: " + response.online);
+				//call this function again in 5 sec if it's needed
+				if ( loop ) {
+					setTimeout(function(){
+						request();
+					}, 5*1000);		
+				}
+			}
+		});
+	};
+	
+	$(request(true));
+</script> 
+   <HEAD>
+      <TITLE>
+         Online users
+      </TITLE>
+   </HEAD>
+<BODY>
+   <p id="online"></p>
+   <button onClick="request(false)">Update</button>
+</BODY>
+</HTML> 

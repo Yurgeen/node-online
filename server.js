@@ -2,7 +2,7 @@ var http = require("http");
 var express = require("express");
 var app = express();
 
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/');
 app.set('view engine', 'ejs');
 app.use(express.cookieParser());
 app.use(express.session({secret:"some secret"}));
